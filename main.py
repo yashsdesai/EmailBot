@@ -37,10 +37,8 @@ def get_email_body(name, role, company):
     )
     return email
 
-def send_email(email_body, role, company):
+def send_email(sender_email, password, email_body, role, company):
 
-    sender_email = "<example@example.com>"
-    password = "password"
     smtp_server = "smtp.office365.com"
     port = 587
 
@@ -64,7 +62,7 @@ def send_email(email_body, role, company):
         server = smtplib.SMTP(smtp_server, port)
         server.starttls(context=context)  # Start TLS encryption
         server.login(sender_email, password)  # Login to your Outlook account
-        print("reached")
+
         # Send the email
         server.sendmail(sender_email, receiver_email, message.as_string())
         print("Email sent successfully!")
