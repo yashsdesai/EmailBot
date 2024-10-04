@@ -4,6 +4,14 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import datetime as dt
 
+def get_credentials():
+    with open("credentials.txt", "r") as f:
+        email = f.readline()
+        password = f.readline()
+
+    return [email, password]
+
+
 def get_email_body(name, role, company):
     now = dt.datetime.now().time()
     if now < dt.datetime.strptime('12:00', '%H:%M').time():
@@ -66,4 +74,5 @@ def send_email(email_body, role, company):
         server.quit()  # Close the SMTP connection
 
 if __name__ == '__main__':
-    pass
+    email, password = get_credentials()
+
